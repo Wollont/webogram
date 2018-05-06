@@ -123,13 +123,16 @@
                     center: uluru
             });
             }
+            document.getElementById('map').setAttribute('style', 'height: '+
+            window.getComputedStyle(document.getElementById('gg_history_wrap')).height
+            +'px;');
         </script>
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsvFPgILgycQwPtXyuYePfkXTq6oNFheY&callback=initMap">
         </script>
 
 
-        <div class="im_history_col_wrap noselect" ng-controller="AppImHistoryController" ng-class="{im_history_loaded: state.loaded}">
+        <div class="im_history_col_wrap noselect" ng-controller="AppImHistoryController" ng-class="{im_history_loaded: state.loaded}" id="gg_history_wrap">
 
             <div class="im_history_not_selected_wrap" ng-switch="isEmpty.contacts & amp; & amp; isEmpty.dialogs">
                 <div ng-switch-when="true" class="im_history_no_dialogs_wrap">
