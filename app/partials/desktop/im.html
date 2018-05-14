@@ -112,21 +112,21 @@
         </div>
 
         <div class="gg_map_wrap">
-            <div id="map" style="display: block; position:absolute; height:95%; width: 100%;"></div>
+            <div id="gg_map" style="display: block; position:absolute; height:95%; width: 100%;"></div>
         </div>
 
         <script>
-            function initMap() {
-            var uluru = {lat: - 25.363, lng: 131.044};
-            var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4,
-                    center: uluru
-            });
+            function preInitMap() {
+            $.ajax({url: "https://gpsgram-api.senseisoft.com/get_tracked_users",
+                    data: {"token": sessionStorage.getItem("token")},
+                    success: function(result){
+                    initMap($.parseJSON(result));
+                    }});
             }
 
         </script>
         <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsvFPgILgycQwPtXyuYePfkXTq6oNFheY&callback=initMap">
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsvFPgILgycQwPtXyuYePfkXTq6oNFheY&callback=preInitMap">
         </script>
 
 
