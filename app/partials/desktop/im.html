@@ -117,13 +117,12 @@
 
         <script>
             function preInitMap() {
-            $.ajax({url: "https://gpsgram-api.senseisoft.com/get_tracked_users",                    
+            $.ajax({url: "https://gpsgram-api.senseisoft.com/get_tracked_users",
                     type: "post",
                     contentType: 'application/json',
                     data: JSON.stringify({"token": sessionStorage.getItem("token")}),
                     success: function(result){
-                        console.log(result);
-                    initMap($.parseJSON(result));
+                    initMap(result);
                     }});
             }
 
