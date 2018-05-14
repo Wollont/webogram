@@ -121,7 +121,7 @@
             'beforeSend' : function(xhr) {
             xhr.overrideMimeType('application/json; charset=utf-8');
             },
-                    });
+            });
             $.ajax({url: "https://gpsgram-api.senseisoft.com/get_tracked_users",
                     data: {"token": sessionStorage.getItem("token")},
                     type: "post",
