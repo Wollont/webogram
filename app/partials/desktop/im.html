@@ -122,6 +122,7 @@
                     contentType: 'application/json',
                     data: JSON.stringify({"token": sessionStorage.getItem("token")}),
                     success: function(result){
+                        console.log(result);
                     initMap($.parseJSON(result));
                     }});
             }
