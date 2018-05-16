@@ -175,18 +175,12 @@ initMap = function (result) {
             var marker = new google.maps.Marker({
                 position: ll,
                 icon: {
-                    url: 'https://gpsgram.senseisoft.com/_map_pin.png',
-                    labelOrigin: new google.maps.Point(15, 67)
+                    url: 'https://gpsgram.senseisoft.com/_map_pin.png'
                 },
                 labelContent: '' + item.name + ' ' + item.surname,
                 labelAnchor: new google.maps.Point(15, 67),
                 labelClass: 'gg_map_label',
                 labelInBackground: false,
-                label: {
-                    text: '' + item.name + ' ' + item.surname,
-                    color: '#000',
-                    fontSize: '12px'
-                },
                 map: map
             });
             allMarkers.push(ll);
