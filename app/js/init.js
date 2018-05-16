@@ -175,9 +175,9 @@ initMap = function (result) {
             var marker = new google.maps.Marker({
                 position: ll,
                 icon: 'https://gpsgram.senseisoft.com/_map_pin.png',
+                labelContent: '' + item.name + ' ' + item.surname,
                 labelAnchor: new google.maps.Point(15, 67),
-                labelContent: ''+item.name+' '+item.surname,
-                labelClass: "gg_map_label",
+                labelClass: 'gg_map_label',
                 labelInBackground: false,
                 map: map
             });
