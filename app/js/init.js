@@ -181,6 +181,7 @@ initMap = function (result) {
                 labelInBackground: false,
                 map: map
             });
+            console.log(marker);
             allMarkers.push(ll);
             google.maps.event.addListener(marker, 'click', function () {
                 var params = {peerString: 'u' + item.tgId};
