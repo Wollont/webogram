@@ -142,15 +142,13 @@ initMap = function (result) {
 
                 var d = distance(gpos, center);
 
-                if (d < 500000) {
+                if (true) {
                     b = new google.maps.LatLngBounds();
                     allMarkers.sort(function (a, b) {
                         return distance(gpos, a) - distance(gpos, b);
                     });
                     b.extend(gpos);
                     b.extend(allMarkers[0]);
-                    b.extend(allMarkers[1]);
-                    b.extend(allMarkers[2]);
                     map.fitBounds(b);
                     map.setCenter(gpos);
                     map.setZoom(map.getZoom() - 1);
@@ -163,12 +161,22 @@ initMap = function (result) {
         }
 
         function markers(item) {
-            var ll = new google.maps.LatLng(parseFloat(item.lat) || 0, parseFloat(item.lon) || 0),
-                    marker = new google.maps.Marker({
-                        position: ll,
-                        icon: 'https://gpsgram.senseisoft.com/_map_pin.png',
-                        map: map
-                    });
+            try {
+                var lat = parseFloat(item.lat);
+                var lon = parseFloat(item.lon);
+            } catch (e) {
+                return;
+            }
+            if (lat === 0 || lon === 0)
+                return;
+
+            var ll = new google.maps.LatLng(lat, lon);
+
+            var marker = new google.maps.Marker({
+                position: ll,
+                icon: 'https://gpsgram.senseisoft.com/_map_pin.png',
+                map: map
+            });
             allMarkers.push(ll);
             google.maps.event.addListener(marker, 'click', function () {
 
@@ -183,7 +191,7 @@ initMap = function (result) {
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             center: center
         });
-        
+
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(centerOnPosition, showError);
         }
