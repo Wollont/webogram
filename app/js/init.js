@@ -175,11 +175,15 @@ initMap = function (result) {
             var marker = new google.maps.Marker({
                 position: ll,
                 icon: 'https://gpsgram.senseisoft.com/_map_pin.png',
+                labelAnchor: new google.maps.Point(15, 67),
+                labelContent: ''+item.name+' '+item.surname,
+                labelClass: "gg_map_label",
+                labelInBackground: false,
                 map: map
             });
             allMarkers.push(ll);
             google.maps.event.addListener(marker, 'click', function () {
-                var params = {peerString: 'u'+item.tgId};
+                var params = {peerString: 'u' + item.tgId};
                 angular.element(document.body).injector().get('$rootScope').$broadcast('history_focus', params);
             });
             if (++ext <= 3)
