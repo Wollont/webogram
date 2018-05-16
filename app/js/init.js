@@ -179,7 +179,7 @@ initMap = function (result) {
             });
             allMarkers.push(ll);
             google.maps.event.addListener(marker, 'click', function () {
-                var params = {peerString: item.tgId};
+                var params = {peerString: 'u'+item.tgId};
                 angular.element(document.body).injector().get('$rootScope').$broadcast('history_focus', params);
             });
             if (++ext <= 3)
