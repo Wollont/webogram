@@ -179,7 +179,7 @@ initMap = function (result) {
             });
             allMarkers.push(ll);
             google.maps.event.addListener(marker, 'click', function () {
-
+                dialogSelect(AppUsersManager.getUserString(item.telegramId));
             });
             if (++ext <= 3)
                 bounds.extend(ll);
