@@ -166,7 +166,7 @@ initMap = function (result) {
             var ll = new google.maps.LatLng(parseFloat(item.lat) || 0, parseFloat(item.lon) || 0),
                     marker = new google.maps.Marker({
                         position: ll,
-                        icon: 'https://gpsgram.senseisoft.com/map_pin.png',
+                        icon: 'https://gpsgram.senseisoft.com/_map_pin.png',
                         map: map
                     });
             allMarkers.push(ll);
