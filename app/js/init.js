@@ -115,6 +115,7 @@
 
 var allMarkers = [];
 var ggmap;
+var ext = 0;
 
 function placeMarker(item) {
     try {
@@ -150,6 +151,7 @@ function placeMarker(item) {
 
 updateMap = function (result) {
     if ($('#gg_map').length) {
+        ext = 0;
         allMarkers.forEach(function (m) {
             m.setMap(null);
         });
@@ -163,6 +165,7 @@ updateMap = function (result) {
 initMap = function (result) {
 
     if ($('#gg_map').length) {
+        ext = 0;
         var center = new google.maps.LatLng(-25.363, 131.044);
         function distance(coords1, coords2) {
 
@@ -214,7 +217,6 @@ initMap = function (result) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(centerOnPosition, showError);
         }
-        var ext = 0;
 
         var bounds = new google.maps.LatLngBounds(),
                 bounds_all = new google.maps.LatLngBounds();
