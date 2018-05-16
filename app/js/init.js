@@ -144,9 +144,6 @@ function placeMarker(item) {
     google.maps.event.addListener(marker, 'click', function () {
         angular.element(document.body).injector().get('$rootScope').$broadcast('history_focus', {peerString: 'u' + item.tgId});
     });
-    if (++ext <= 3)
-        bounds.extend(ll);
-    bounds_all.extend(ll);
 }
 
 updateMap = function (result) {
@@ -218,8 +215,6 @@ initMap = function (result) {
             navigator.geolocation.getCurrentPosition(centerOnPosition, showError);
         }
 
-        var bounds = new google.maps.LatLngBounds(),
-                bounds_all = new google.maps.LatLngBounds();
 
         result.trackedUsers.forEach(function (item) {
             placeMarker(item);
