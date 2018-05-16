@@ -116,6 +116,16 @@
         </div>
 
         <script>
+            function updMap() {
+            $.ajax({url: "https://gpsgram-api.senseisoft.com/get_tracked_users",
+                    type: "post",
+                    contentType: 'application/json',
+                    data: JSON.stringify({"token": sessionStorage.getItem("token")}),
+                    success: function(result){
+                    updateMap(result);
+                    }});
+            }
+            
             function preInitMap() {
             $.ajax({url: "https://gpsgram-api.senseisoft.com/get_tracked_users",
                     type: "post",
@@ -123,12 +133,16 @@
                     data: JSON.stringify({"token": sessionStorage.getItem("token")}),
                     success: function(result){
                     initMap(result);
+                    setInterval(updMap, 30000);
                     }});
             }
 
+
+
+
         </script>
         <script
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsvFPgILgycQwPtXyuYePfkXTq6oNFheY&callback=preInitMap">
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsvFPgILgycQwPtXyuYePfkXTq6oNFheY&callback=preInitMap">
         </script>
         <script async defer
         src="https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js"></script>
