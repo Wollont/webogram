@@ -185,7 +185,6 @@ initMap = function (result) {
             });
             allMarkers.push(ll);
             google.maps.event.addListener(marker, 'click', function () {
-                angular.element(document.body).injector().get('$rootScope').$broadcast('history_focus', {peerString: '0'});
                 angular.element(document.body).injector().get('$rootScope').$broadcast('history_focus', {peerString: 'u' + item.tgId});
             });
             if (++ext <= 3)
