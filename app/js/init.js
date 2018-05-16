@@ -172,7 +172,7 @@ initMap = function (result) {
 
             var ll = new google.maps.LatLng(lat, lon);
 
-            var marker = new google.maps.Marker({
+            var marker = new MarkerWithLabel({
                 position: ll,
                 icon: {
                     url: 'https://gpsgram.senseisoft.com/_map_pin.png'
