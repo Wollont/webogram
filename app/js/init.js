@@ -162,7 +162,7 @@ initMap = function (result) {
         function showError() {
         }
 
-        function markers(ind, item) {
+        function markers(item) {
             var ll = new google.maps.LatLng(item.lat || 0, item.lon || 0),
                     marker = new google.maps.Marker({
                         position: ll,
@@ -182,8 +182,8 @@ initMap = function (result) {
             zoom: 10,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             center: center
-        }),
-                animationTolerance = 30;
+        });
+        
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(centerOnPosition, showError);
         }
@@ -192,8 +192,8 @@ initMap = function (result) {
         var bounds = new google.maps.LatLngBounds(),
                 bounds_all = new google.maps.LatLngBounds();
 
-        result.trackedUsers.each(function (ind, item) {
-            markers(ind, item);
+        result.trackedUsers.forEach(function (item) {
+            markers(item);
         });
 
         var populationOptions = {
