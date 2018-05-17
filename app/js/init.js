@@ -118,7 +118,7 @@ var ggmap;
 var ext = 0;
 var gginfobox = null;
 var boxText = document.createElement("div");
-boxText.style.cssText = "border: 1px solid black; margin-top: 8px; background: yellow; padding: 5px;";
+boxText.style.cssText = "border: 1px solid black; margin-top: 8px; background: yellow; padding: 5px; width: 160px;";
 
 function placeMarker(item) {
     try {
@@ -161,10 +161,11 @@ function placeMarker(item) {
             content: boxText
             , disableAutoPan: false
             , maxWidth: 0
-            , pixelOffset: new google.maps.Size(-100, 0)
+            , pixelOffset: new google.maps.Size(-80, 0)
             , zIndex: null
             , boxStyle: {
-                opacity: 0.75
+                opacity: 0.75,
+                width: "160px"
             }
             , closeBoxMargin: "10px 2px 2px 2px"
             , closeBoxURL: "https://www.google.com/intl/en_us/mapfiles/close.gif"
