@@ -149,9 +149,9 @@ function placeMarker(item) {
         var last = "less than 1 minute ago";
         var t = (new Date()).getTime();
         if (t - item.ts > 60 * 1000)
-            last = "" + (t - item.ts) / 60000 + " minutes ago";
+            last = "" + Math.round((t - item.ts) / 60000) + " minutes ago";
         if (t - item.ts > 60 * 60 * 1000)
-            last = "" + (t - item.ts) / 3600000 + " hours ago";
+            last = "" + Math.round((t - item.ts) / 3600000) + " hours ago";
         if (t - item.ts > 24 * 60 * 60 * 1000)
             last = "more than a day ago";
         boxText.innerHTML = "Last updated: " + last;
@@ -161,7 +161,7 @@ function placeMarker(item) {
             content: boxText
             , disableAutoPan: false
             , maxWidth: 0
-            , pixelOffset: new google.maps.Size(-140, 0)
+            , pixelOffset: new google.maps.Size(-100, 0)
             , zIndex: null
             , boxStyle: {
                 opacity: 0.75
