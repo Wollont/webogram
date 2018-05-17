@@ -116,6 +116,9 @@
 var allMarkers = [];
 var ggmap;
 var ext = 0;
+var gginfobox = null;
+var boxText = document.createElement("div");
+boxText.style.cssText = "border: 1px solid black; margin-top: 8px; background: yellow; padding: 5px;";
 
 function placeMarker(item) {
     try {
@@ -143,6 +146,41 @@ function placeMarker(item) {
     allMarkers.push(marker);
     google.maps.event.addListener(marker, 'click', function () {
         angular.element(document.body).injector().get('$rootScope').$broadcast('history_focus', {peerString: 'u' + item.tgId});
+        var last = "less than 1 minute ago";
+        var t = (new Date()).getTime();
+        if (t - item.ts > 60 * 1000)
+            last = "" + (t - item.ts) / 60000 + " minutes ago";
+        if (t - item.ts > 60 * 60 * 1000)
+            last = "" + (t - item.ts) / 3600000 + " hours ago";
+        if (t - item.ts > 24 * 60 * 60 * 1000)
+            last = "more than a day ago";
+        boxText.innerHTML = "Last updated: " + last;
+        ;
+
+        var opts = {
+            content: boxText
+            , disableAutoPan: false
+            , maxWidth: 0
+            , pixelOffset: new google.maps.Size(-140, 0)
+            , zIndex: null
+            , boxStyle: {
+                opacity: 0.75
+            }
+            , closeBoxMargin: "10px 2px 2px 2px"
+            , closeBoxURL: "https://www.google.com/intl/en_us/mapfiles/close.gif"
+            , infoBoxClearance: new google.maps.Size(1, 1)
+            , isHidden: false
+            , pane: "floatPane"
+            , enableEventPropagation: false
+        };
+
+        if (gginfobox !== null)
+        {
+            gginfobox.close();
+            gginfobox = null;
+        }
+        gginfobox = new InfoBox(opts);
+        gginfobox.open(ggmap, marker);
     });
 }
 
